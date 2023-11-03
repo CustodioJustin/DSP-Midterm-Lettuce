@@ -9,8 +9,7 @@ class Periodogram:
         self.file_path = file_path
         self.data = pd.read_excel(self.file_path)
 
-    # Compute for the periodogram
-    def compute_periodogram(self, column_name):
+    def process_periodogram_data(self, column_name):
         time_series_data = [float(row[column_name]) for index, row in self.data.iterrows()]
         frequencies, power_spectrum = periodogram(time_series_data)
 
@@ -19,14 +18,13 @@ class Periodogram:
 
         return nonzero_freq, nonzero_power
 
-    def compute_smooth_periodogram(self, column_name):
-        time_series_data = [float(row[column_name]) for index, row in self.data.iterrows()]
-        frequencies, power_spectrum = periodogram(time_series_data)
+    def compute_periodogram(self, column_name):
+        nonzero_freq, nonzero_power = self.process_periodogram_data(column_name)
+        return nonzero_freq, nonzero_power
 
-        nonzero_freq = [freq for freq, power in zip(frequencies, power_spectrum) if freq != 0]
-        nonzero_power = [power for freq, power in zip(frequencies, power_spectrum) if freq != 0]
-
-        smoothed_power_spectrum = np.convolve(nonzero_power, np.ones(10) / 10, mode='same')
+    def compute_smooth_periodogram(self, column_name, filter_size=10):
+        nonzero_freq, nonzero_power = self.process_periodogram_data(column_name)
+        smoothed_power_spectrum = np.convolve(nonzero_power, np.ones(filter_size) / filter_size, mode='same')
         return nonzero_freq, smoothed_power_spectrum
 
     # Removes any data that is 0
