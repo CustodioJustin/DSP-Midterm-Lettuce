@@ -82,7 +82,6 @@ frequencies, power_spectrum = DataSheet.compute_periodogram("Humidity - Daily")
 DataSheet.plot_periodogram(frequencies, power_spectrum, "Humidity - Daily")
 
 
-
 # Displaying smooth periodogram for Temperature
 frequencies, power_spectrum = DataSheet.compute_smooth_periodogram("Temperature (Celsius)")
 DataSheet.plot_periodogram(frequencies, power_spectrum, "Temperature - 15m Interval (Low Pass Filter)")
@@ -90,12 +89,4 @@ DataSheet.plot_periodogram(frequencies, power_spectrum, "Temperature - 15m Inter
 # Displaying smooth periodogram for Humidity
 frequencies, power_spectrum = DataSheet.compute_smooth_periodogram("Humidity")
 DataSheet.plot_periodogram(frequencies, power_spectrum, "Humidity - 15m Interval (Low Pass Filter)")
-
-# Displaying smooth periodogram for Temperature Daily
-frequencies, power_spectrum = DataSheet.compute_smooth_periodogram("Temperature - Daily")
-DataSheet.plot_periodogram(frequencies, power_spectrum, "Temperature - Daily (Low Pass Filter)")
-
-# Displaying smooth periodogram for Humidity Daily
-frequencies, power_spectrum = DataSheet.compute_smooth_periodogram("Humidity - Daily")
-DataSheet.plot_periodogram(frequencies, power_spectrum, "Humidity - Daily (Low Pass Filter)")
 
