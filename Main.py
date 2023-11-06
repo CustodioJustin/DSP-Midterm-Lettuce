@@ -60,7 +60,7 @@ class Periodogram:
             os.makedirs(directory)
 
         file_path = os.path.join(directory, file_name)
-        plt.savefig(file_path, format='png', dpi=300)
+        plt.savefig(file_path, format='png', dpi=400)
         plt.show()
 
 DataSheet = Periodogram('DSP Data Collection.xlsx')
